@@ -4,7 +4,9 @@ Date: 28 May 2024
 
 Min Heap
 A type of Heap Data Structure in which each node is smaller than or equal to its children. 
-This heap is created using 
+The value in this min heap is a 2D array where first value is the index of the number and second value is the number itself.
+
+This is used with the PartialHeapSort.py under the Sorting Algorithm.
 
 """
 
@@ -23,7 +25,7 @@ class Heap:
         The initialise method in the list
         complexity: best : O(1)
                     worst : O(1)
-        argument : k : the top-k
+        argument : k : the size of the heap
         return : -
 
         """
