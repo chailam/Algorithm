@@ -33,7 +33,7 @@ Requirement:
 
 
 Input:
-The input file houses.txt consists of 2 lines. The first line of the input is the value of N
+The input file consists of 2 lines. The first line of the input is the value of N
 corresponding to the total number of houses in the street. The next line contains N space
 separated numbers where i − th of the numbers is p_i denoting the total price of the items the
 residents of house i are willing to buy if he does not sell to any neighboring house of i. 

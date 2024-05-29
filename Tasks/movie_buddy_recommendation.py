@@ -30,7 +30,7 @@ takes O(L) in the worst-case where L is the number of characters in the smaller 
 
 
 Input:
-The input file named favoriteMovies.txt records, for each user, a list of its favorite movies.
+The input file has for each user, a list of its favorite movies.
 Below are the first five lines from the file"
 
 1:FANTASTIC FOUR,THE SECOND BEST EXOTIC MARIGOLD HOTEL
