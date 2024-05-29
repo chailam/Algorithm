@@ -6,80 +6,94 @@ Word AutoComplete using Trie Data Structure
 Assignment 3
 
 Problem:
-Alice drives to work and listens to her favorite songs on her way. She hates it when she is in
-middle of a song and reaches her destination. This is because if she does not listen to a song
-till the end then it keeps playing in her mind for the whole day which affects her performance.
-She does not want to sit in the car waiting for the song to finish. Also, she does not want to
-stop listening to the song before she has arrived her destination. In other words, she wants the
-songs to play such that a song ends exactly when she has arrived her destination.
 
-Your goal is to write an algorithm that determines a playlist of the songs such that, if the
-songs are continuously played during her journey, a song finishes exactly when she reaches the
-destination. In other words, if the estimated duration of her journey is T minutes, the total
-duration of the songs in the playlist must also be exactly T. Furthermore, she does not want
-any song to be repeated. Therefore, your playlist should not have duplicate songs
+For a given prefix entered by the user, the program should:
+1. Display the word with the highest frequency that matches the prefix.
+2. Show the definition of the suggested word.
+3. Indicate the total number of words with the given prefix.
 
-
-Songs Logic:
-There are a list of songs numbered 1 to N (called ID of the song). A song with ID i has
-a duration d_i (in minutes). You can assume that no two songs have the same duration. The
-output must print the playlist meeting the above requirement (in ascending order of the IDs of
-the songs). If it is not possible to find such playlist, you must report a message stating “Bad
-luck Alice!”.
+For example, assume that the frequencies of “adversary”,
+“advisory”, and “adventure” are 100, 200 and 150, respectively. If a user types “adv”, the modified
+auto-complete system should display “advisory” with its definition and the number 43 that
+corresponds to the number of words that have “adv” as a prefix . 
 
 
 
 Requirement:
-- The solution must run in worst-case O(NT) time and use O(NT) space,
-where N is the total number of songs and T is the estimated journey time
+- The  program will have two components. 
+First, you will construct a Trie. Then, for each of
+the user’s entered prefix, you will need to return the relevant results. The worst-case time
+complexity to construct the Trie must be O(T) where T is the total number of characters in
+Dictionary file. The complexity requirements to return results for each of the user’s entered
+prefix is O(M + N) where M is the length of the prefix entered by the user and N is the total
+number of characters in the the word with the highest frequency and its definition. Note that
+this is optimal because the size of the output string is O(M +N) and no algorithm can achieve
+a better complexity. Note that N may be equal to M (i.e., the word is the same as the prefix
+and the definition is empty). Also, note that, in this assignment, we are assuming that each
+string comparison takes O(M) where M is the number of characters.
+
 
 
 
 Input:
-The input file consists of 2 lines. The first line of the input contains a single integer N that
-represents the total number of songs in the phone. The next line contains N space separated
-numbers where i − th of the numbers is d_i denoting the duration of the song with ID i. Below
-is a sample input
+Input is the file contains around 3, 000 words, their frequencies and their
+definitions. However, below we illustrate the input and output assuming that the
+dictionary contains the details of only the following four words.
 
-5
-10 3 5 7 2
+word: align
+frequency: 358
+definition: To adjust or form to a line; to range or form in line; to bring
+into line; to aline.
 
-In the above input, there are 5 songs: duration of song with ID 1 is 10 minutes, and the
-song with ID 2 is 3 minutes and so on.
+word: adversary
+frequency: 157
+definition: One who is turned against another or others with a design to
+oppose
+
+word: advisory
+frequency: 720
+definition: Having power to advise; containing advice; as, an advisory
+council; their opinion is merely advisory.
+
+word: adventure
+frequency: 696
+definition: To try the chance; to take the risk.
+
+You can assume that each word in the dictionary consists of only lowercase English letters 
+(e.g., they do not contain white spaces, hyphens or other symbols).
 
 
 
 Output:
-The program must ask the user to enter the journey time T (which you can assume will always
-be a positive integer). Your output must print the playlist that meets the above requirements,
-in ascending order of IDs, with the duration of each song displayed next to the song ID (see
-below). If there are more than one correct answers (multiple playlists with the total duration
-T), you are free to print any of the playlists. If it is not possible to find such a playlist, you
-must display “Bad luck Alice!”
-
-Below are some sample outputs for different values of trip length T.
-
-Enter trip length: 14
-Playlist
-ID: 3 Duration: 5
-ID: 4 Duration: 7
-ID: 5 Duration: 2
-
-Enter trip length: 17
-Playlist
-ID: 1 Duration: 10
-ID: 4 Duration: 7
-
-Note that the following answer for T = 17 is also correct.
-Enter trip length: 17
-Playlist
-ID: 1 Duration: 10
-ID: 3 Duration: 5
-ID: 5 Duration: 2
-
-If the trip length is 16, no playlist can be found that has the total duration equal to 16 .
-Enter trip length: 16
-Bad Luck Alice!
+Once you have created a Trie, the program must ask the user to enter a prefix. It must then
+display the word with the highest frequency, its definition and the number of words that have
+the input text as the prefix. If there are more than one words with the highest frequency, you
+must display the alphabetically smallest word (e.g., if prefix is “be”, and “best” and “beast”
+both have the same frequency (and highest among all words matching the prefix), your program
+must display “beast” because it is alphabetically smaller than “best”). The program must keep
+asking the user to enter another prefix and terminate only when the user enters *** instead of
+the prefix. Below is a sample execution of the program for the small data shown in the Input
+section above.
+Enter a prefix: adv
+Auto-complete suggestion: advisory
+Definition: Having power to advise; containing advice; as, an advisory
+council; their opinion is merely advisory.
+There are 3 words in the dictionary that have "adv" as a prefix.
+Enter a prefix: adve
+Auto-complete suggestion: adventure
+Definition: To try the chance; to take the risk.
+There are 2 words in the dictionary that have "adve" as a prefix.
+Enter a prefix:
+Auto-complete suggestion: advisory
+Definition: Having power to advise; containing advice; as, an advisory
+council; their opinion is merely advisory.
+There are 4 words in the dictionary that have "" as a prefix.
+Enter a prefix: bat
+There is no word in the dictionary that has "bat" as a prefix.
+Enter a prefix: ***
+Bye Alice!
+Note that the third prefix entered by the user in the above example is an empty string in
+which case the most frequent word in the whole dictionary is returned.
 
 
 
