@@ -4,7 +4,7 @@ Date: 29 May 2024
 
 Travelling Salesman Problem (TSP) using Dynamic Programming
 
-Assignment 2
+Assignment 2a
 
 Problem:
 A door-to-door salesman is visiting a strange town where people really hate their neighbors.
@@ -26,6 +26,10 @@ numbered 47 to 53 and the house number 2 is the neighboring house of all the hou
 1 to 5. If k = 1, the house number 50 is the neighboring house of 49 and 51, and the house
 number 2 is the neighboring house of 1 and 3.
 
+
+
+Requirement:
+- The solution must run in worst case O(N) time and use O(N) space.
 
 
 Input:
@@ -66,11 +70,6 @@ Total Sale: 175
 Enter value of k: 10
 Houses: 7
 Total Sale: 100
-
-
-
-Requirement:
-- The solution must run in O(N) time and use O(N) space.
 
 
 
