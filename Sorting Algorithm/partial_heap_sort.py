@@ -30,7 +30,7 @@ import os  # nopep8
 sys.path.insert(0, os.path.join(
     os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Data Structure'))  # nopep8
 
-from MinHeap import Heap
+from min_heap import Heap
 
 
 def partialHeapSort(alist, k):
