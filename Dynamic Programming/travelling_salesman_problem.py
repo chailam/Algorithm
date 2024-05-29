@@ -82,6 +82,22 @@ adheres to the time and space complexity requirements. The algorithm needs to:
 while respecting the neighborhood constraint defined by k.
 4. Print the optimal set of house numbers and the corresponding total sale amount.
 
+
+
+Thought:
+In this question, the base case is when there is no house. The optimal structure is when the 
+number of houses increases, the maximum sales of the houses if the salesman sell anything to 
+certain houses. 
+
+First, I initialize two array, memo and position. The memo array memoise the maximum sales of 
+the houses. The position array memoise where the maximum value come from (index of 
+previous houses). For each house, I calculate the maximum sales using max(include,exclude), 
+include is the maximum sales which include the current houses, value[i] + memo[i-k-1], while 
+exclude is the maximum value which exclude the current houses, memo[i-1]. The answer of the 
+question is the last value in the memo array (the maximum sales). The worst-case space and 
+time complexity is O(N), where N is the total number of houses as I only loop N times, also 
+create memo and position array which only take O(N) space.
+
 """
 
 
