@@ -3,15 +3,22 @@ Author: Loi Chai Lam
 Date: 16 Sep 2017
 title : Assignment2 Task 4 (Editor using array-based List)
 
-Min Heap
-A type of Heap Data Structure in which each node is smaller than or equal to its children.
-The value in this min heap is a 2D array where first value is the index of the number and second value is the number itself.
-
-This is used with the PartialHeapSort.py under the Sorting Algorithm.
+This program involves creating a simple line-oriented text editor in Python, 
+similar to the early UNIX text editor "ed". The text editor will allow users 
+to manipulate lines of text within a file using a variety of commands. The editor 
+will be implemented using an array-based list data structure, enabling efficient access 
+and modification of lines by their line numbers.
 
 
 """
-from task2 import List
+import sys  # nopep8
+import os  # nopep8
+
+# append the path of the parent directory
+sys.path.insert(0, os.path.join(
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Data Structure'))  # nopep8
+
+from the_list import List
 
 
 class Editor:
