@@ -28,7 +28,7 @@ import os  # nopep8
 
 # append the path of the parent directory
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Data Structure'))  # nopep8
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'DataStructure'))  # nopep8
 
 from min_heap import Heap
 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     To read the file into an array, complexity os O(N),
     where N is the number of users
     """
-    filename = "./Sample Data/partialHeapSortSampleData.txt"
+    filename = "./SampleData/partialHeapSortSampleData.txt"
     array = []
     file = open(filename, "r", encoding="UTF-8-sig")
     for line in file:

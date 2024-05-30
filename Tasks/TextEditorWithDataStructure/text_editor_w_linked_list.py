@@ -1,12 +1,12 @@
 """
 Author: Loi Chai Lam
 Date: 16 Sep 2017
-title : Assignment2 Task 4 (Editor using array-based List)
+title : Assignment2 Task Task 5_b (Editor using Linked List)
 
 This program involves creating a simple line-oriented text editor in Python, 
 similar to the early UNIX text editor "ed". The text editor will allow users 
 to manipulate lines of text within a file using a variety of commands. The editor 
-will be implemented using an array-based list data structure, enabling efficient access 
+will be implemented using an linked list data structure, enabling efficient access 
 and modification of lines by their line numbers.
 
 
@@ -16,9 +16,10 @@ import os  # nopep8
 
 # append the path of the parent directory
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Data Structure'))  # nopep8
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'DataStructure'))  # nopep8
 
-from the_list import List
+from linked_list import LinkedList
+from node import Node
 
 
 class Editor:
@@ -38,7 +39,7 @@ class Editor:
         return : -
 
         """
-        self.thelist = List()
+        self.thelist = LinkedList()
 
     def read(self, filename):
         """
@@ -83,11 +84,11 @@ class Editor:
         Takes a word and prints the line numbers in which the target word appears
         precondition : -
         postcondition : -
-        complexity: best : O(N), N is the length of the list 
+        complexity: best : O(N), N is the length of the list
                     worst : O(N),N is the length of the list
         argument : word : the target word
         return : line_return : return the line numbers in list
-                 False : if the item  ot in the list, return False
+                 False : if the item not in the list, return False
 
         """
         line_return = []
@@ -106,7 +107,7 @@ class Editor:
         Print the line in the list between position num1 and num2
         precondition : num1 < num2
         postcondition : -
-        complexity: best : O(N),N is difference between num1 and num2 
+        complexity: best : O(N),N is difference between num1 and num2
                     worst : O(N),N is difference between num1 and num2 
         argument : num1 : the starting point of the item need to be printed
                    num2 : the ending point of the item need to be printed
@@ -131,7 +132,7 @@ class Editor:
         Inserts item into self before position index
         precondition : the index must be a valid index
         postcondition : -
-        complexity: best :O(N) ,N is the length of the list
+        complexity: best :  O(N) ,N is the length of the list
                     worst : O(N) ,N is the length of the list
         argument : text : the item need to be inserted
                    num : the index of the item need to be inserted
@@ -145,7 +146,7 @@ class Editor:
         Deletes the item at index from the list
         precondition : the index must be a valid index
         postcondition : -
-        complexity: best : O(N), N is the length of the list
+        complexity: best : O(N) ,N is the length of the list 
                     worst : O(N), N is the length of the list
         argument : num : the index of the item need to be deleted
         return : -
@@ -250,7 +251,7 @@ class Editor:
 
         elif command[0] == "undo":
             try:
-                assert len(command) == 1
+                assert len(command) == 1, "?"
                 pre_command = self.stack.pop()
                 if pre_command[0] == "insert":
                     self.delete_index(pre_command[1])
@@ -265,6 +266,7 @@ class Editor:
             print("?")
 
 
+
 if __name__ == "__main__":
     editor = Editor()
     while True:
@@ -273,3 +275,15 @@ if __name__ == "__main__":
         if command[0] == "quit":
             break
         editor.menu(command)
+
+
+"""
+The performance of the text editor will become higher when changing to the linked list,
+as linked list will not have the size fixed, while the array-based list has a fixed size.
+Hence, in array-based list, while the size of the list is full, it will change the size which
+need to create and reimplement the whole list, which will lower the performance.
+
+For the insertion and deletetion, the linked list need to use _get_node method to loop
+through to get the node, so the performance for linked list and array-based list are same in
+insertion and deleteion.
+"""

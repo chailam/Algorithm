@@ -196,7 +196,7 @@ def printResult(song, d):
 
 
 if __name__ == "__main__":
-    filename = "./Sample Data/playlistSampleData.txt"
+    filename = "./SampleData/playlistSampleData.txt"
     file = open(filename, "r", encoding="UTF-8-sig")
     tmp = []
     for line in file:

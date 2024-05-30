@@ -263,7 +263,7 @@ def readFile(filename):
 
 if __name__ == "__main__":
 
-    filename = "./Sample Data/wordAutocompleteSampleData.txt"
+    filename = "./SampleData/wordAutocompleteSampleData.txt"
     wordList, freqList, definitionList = readFile(filename)
     trie = Trie()
     for i in range(len(wordList)):

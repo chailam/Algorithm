@@ -184,7 +184,7 @@ def printResult(index, memo, N):
 
 
 if __name__ == "__main__":
-    filename = "./Sample Data/travellingSalesmanSampleData.txt"
+    filename = "./SampleData/travellingSalesmanSampleData.txt"
     file = open(filename, "r", encoding="UTF-8-sig")
     tmp = []
     for line in file:

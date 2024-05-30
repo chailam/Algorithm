@@ -7,7 +7,7 @@ Assignment 1b
 
 Problem:
 Alice has written a script to obtain a file called favoriteMovies.txt 
-(stored as "movieBuddyRecommendationSampleData.txt" under "Sample Data" folder) 
+(stored as "movieBuddyRecommendationSampleData.txt" under "SampleData" folder) 
 which contains favorite movies for each user. The favorite movies for each user are not listed in any particular order.
 She wants to introduce a movie buddy recommendation feature that sends people notification
 about other people who like exactly the same set of movies. She wants to write an
@@ -345,7 +345,7 @@ def printResult(array, movieName):
 
 
 if __name__ == "__main__":
-    filename = "./Sample Data/movieBuddyRecommendationSampleData.txt"
+    filename = "./SampleData/movieBuddyRecommendationSampleData.txt"
     array, user = readFile(filename)
     array = radixSort(array, "character")
     movieName = movieToNum(array)

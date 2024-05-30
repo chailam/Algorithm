@@ -292,8 +292,8 @@ def printResult(cameraList, source):
 
 
 if __name__ == "__main__":
-    arrCam = arrayCamera('./Sample Data/cameraDetectorVerticesSampleData.txt', 6105)
-    maps = adjList('./Sample Data/cameraDetectorEdgesSampleData.txt', arrCam, 6105)
+    arrCam = arrayCamera('./SampleData/cameraDetectorVerticesSampleData.txt', 6105)
+    maps = adjList('./SampleData/cameraDetectorEdgesSampleData.txt', arrCam, 6105)
     sourceLo = int(input("Enter your location: "))
     k = int(input("Enter k: "))
     source = [arrCam[sourceLo], 0]  # 2011 2010

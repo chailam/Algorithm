@@ -1,13 +1,14 @@
 """
 Author: Loi Chai Lam
 Date: 16 Sep 2017
-title : Assignment2 Task Task 5_b (Editor using Linked List)
+title : Assignment2 Task 6_b (Editor with undo)
+
 
 This program involves creating a simple line-oriented text editor in Python, 
 similar to the early UNIX text editor "ed". The text editor will allow users 
 to manipulate lines of text within a file using a variety of commands. The editor 
-will be implemented using an linked list data structure, enabling efficient access 
-and modification of lines by their line numbers.
+will be implemented using an linked list and linked stack data structure, enabling efficient access 
+and modification of lines by their line numbers. It has the undo feature to pop out the last action.
 
 
 """
@@ -16,15 +17,16 @@ import os  # nopep8
 
 # append the path of the parent directory
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Data Structure'))  # nopep8
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'DataStructure'))  # nopep8
 
 from linked_list import LinkedList
+from linked_stack import LinkedStack
 from node import Node
 
 
 class Editor:
     """
-    The class Editor using the class List to implement an editor
+    The class Editor using the class List to implement an editor with undo function (using LinkedStack)
 
     """
 
@@ -40,6 +42,7 @@ class Editor:
 
         """
         self.thelist = LinkedList()
+        self.stack = LinkedStack()
 
     def read(self, filename):
         """
@@ -50,7 +53,7 @@ class Editor:
         complexity: best :O(N), N is the length of the file
                     worst : O(N), N is the length of the file
         argument : filename : the filename which need to read
-        return : self.thelist : the list in the editor appended
+        return : -
 
         """
         file = open(filename)
@@ -58,7 +61,6 @@ class Editor:
             line = line.strip("\n")
             self.thelist.append(line)
         file.close()
-        return self.thelist
 
     def write(self, filename):
         """
@@ -107,7 +109,7 @@ class Editor:
         Print the line in the list between position num1 and num2
         precondition : num1 < num2
         postcondition : -
-        complexity: best : O(N),N is difference between num1 and num2
+        complexity: best : O(N),N is difference between num1 and num2 
                     worst : O(N),N is difference between num1 and num2 
         argument : num1 : the starting point of the item need to be printed
                    num2 : the ending point of the item need to be printed
@@ -132,7 +134,7 @@ class Editor:
         Inserts item into self before position index
         precondition : the index must be a valid index
         postcondition : -
-        complexity: best :  O(N) ,N is the length of the list
+        complexity: best : O(N) ,N is the length of the list
                     worst : O(N) ,N is the length of the list
         argument : text : the item need to be inserted
                    num : the index of the item need to be inserted
@@ -146,7 +148,7 @@ class Editor:
         Deletes the item at index from the list
         precondition : the index must be a valid index
         postcondition : -
-        complexity: best : O(N) ,N is the length of the list 
+        complexity: best : O(N) ,N is the length of the list
                     worst : O(N), N is the length of the list
         argument : num : the index of the item need to be deleted
         return : -
@@ -244,8 +246,8 @@ class Editor:
                         num = int(num)
                     except:
                         print("?")
-                    self.stack.push(["delete_index", self.thelist[num], num])
                     self.delete_index(num)
+                    self.stack.push(["delete_index", self.thelist[num], num])
             except:
                 print("?")
 
@@ -266,7 +268,6 @@ class Editor:
             print("?")
 
 
-
 if __name__ == "__main__":
     editor = Editor()
     while True:
@@ -275,15 +276,3 @@ if __name__ == "__main__":
         if command[0] == "quit":
             break
         editor.menu(command)
-
-
-"""
-The performance of the text editor will become higher when changing to the linked list,
-as linked list will not have the size fixed, while the array-based list has a fixed size.
-Hence, in array-based list, while the size of the list is full, it will change the size which
-need to create and reimplement the whole list, which will lower the performance.
-
-For the insertion and deletetion, the linked list need to use _get_node method to loop
-through to get the node, so the performance for linked list and array-based list are same in
-insertion and deleteion.
-"""
