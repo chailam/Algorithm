@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 28 May 2024
+Date: 28 Apr 2018
 
 Trie
 Also called digital tree or prefix tree, is a type of k-ary search tree, 

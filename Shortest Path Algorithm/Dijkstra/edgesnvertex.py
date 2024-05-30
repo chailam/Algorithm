@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 29 May 2024
+Date: 14 May 2018
 
 The Edge class and Vertex class used to represent a weighted graph.
 

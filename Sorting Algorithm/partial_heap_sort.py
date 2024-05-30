@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 28 May 2024
+Date: 10 Mar 2017
 
 Partial Heap Sort
 This sorting algorithm is to ue heap to do a partial heap sort

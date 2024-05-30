@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 29 May 2024
+Date: 28 Apr 2018
 
 Word AutoComplete using Trie Data Structure
 Assignment 3

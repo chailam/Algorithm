@@ -1,7 +1,10 @@
 """
-author : Loi Chai Lam
-date : 14/5/2018
-title : Assignment4 - min heap
+Author: Loi Chai Lam
+Date: 14 May 2018
+
+The modified min heap used to implement the Dijkstra algorithm.
+It includes the array of vertices in the Heap to store the Vertex class for Dijkstra algorithm.
+
 
 """
 # Min Heap

@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 29 May 2024
+Date: 14 May 2018
 
 Dijkstra Algorithm
 An algorithm for finding the shortest paths between nodes in a weighted graph, which may represent, 

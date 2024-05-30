@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 29 May 2024
+Date: 14 May 2018
 
 Red Light Camera Detector using Dijkstra Algorithm
 Assignment 4

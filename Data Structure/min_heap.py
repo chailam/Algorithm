@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 28 May 2024
+Date: 10 Mar 2017
 
 Min Heap
 A type of Heap Data Structure in which each node is smaller than or equal to its children. 

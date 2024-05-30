@@ -1,6 +1,6 @@
 """
 Author: Loi Chai Lam
-Date: 29 May 2024
+Date: 14 May 2018
 
 The modified min heap used to implement the Dijkstra algorithm.
 It includes the array of vertices in the Heap to store the Vertex class for Dijkstra algorithm.
