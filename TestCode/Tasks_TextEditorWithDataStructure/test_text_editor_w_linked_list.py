@@ -12,13 +12,13 @@ import os  # nopep8
 
 # append the path of the parent directory
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'DataStructure'))  # nopep8
+    os.path.dirname(os.path.dirname((os.path.dirname(os.path.realpath(__file__))))), 'DataStructure'))  # nopep8
 
 from linked_list import LinkedList
 from node import Node
 
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Tasks/TextEditorWithDataStructure'))  # nopep8
+    os.path.dirname(os.path.dirname((os.path.dirname(os.path.realpath(__file__))))), 'Tasks/TextEditorWithDataStructure'))  # nopep8
 
 from text_editor_w_linked_list import Editor
 

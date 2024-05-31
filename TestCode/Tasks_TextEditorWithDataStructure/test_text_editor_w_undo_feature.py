@@ -7,23 +7,24 @@ This is a testing code to test the List Data structure under
 folder "Data Structure/the_list.py"
 
 """
+import unittest
 import sys  # nopep8
 import os  # nopep8
 
 # append the path of the parent directory
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'DataStructure'))  # nopep8
+    os.path.dirname(os.path.dirname((os.path.dirname(os.path.realpath(__file__))))), 'DataStructure'))  # nopep8
+
 
 from linked_list import LinkedList
 from node import Node
 from linked_stack import LinkedStack
 
 sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Tasks/TextEditorWithDataStructure'))  # nopep8
+    os.path.dirname(os.path.dirname((os.path.dirname(os.path.realpath(__file__))))), 'Tasks/TextEditorWithDataStructure'))  # nopep8
 
 from text_editor_w_undo_feature import Editor
 
-import unittest
 
 
 class TestList(unittest.TestCase):
