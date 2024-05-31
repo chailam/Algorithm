@@ -13,6 +13,11 @@ it provides only marginal performance improvements.
 It is used primarily as an educational tool.
 
 
+Complexity:
+Worst complexity of the shaker sort list is O(n^2),
+ hence the time will increase with the length of the list increase
+
+
 """
 
 
