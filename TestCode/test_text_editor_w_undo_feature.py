@@ -1,10 +1,10 @@
 """
 author : Loi Chai Lam
 date : 8 Sep 2017
-title : Testing for Assignment2 Task 4
+title : Testing for Assignment2 Task 2
 
-This is a testing code to test the under
-folder "Tasks/text_editor_using_linked_list.py"
+This is a testing code to test the List Data structure under
+folder "Data Structure/the_list.py"
 
 """
 import sys  # nopep8
@@ -14,15 +14,64 @@ import os  # nopep8
 sys.path.insert(0, os.path.join(
     os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'DataStructure'))  # nopep8
 
-from the_list import List
-from ..Tasks import text_editor_using_linked_list
+from linked_list import LinkedList
+from node import Node
+from linked_stack import LinkedStack
+
+sys.path.insert(0, os.path.join(
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Tasks/TextEditorWithDataStructure'))  # nopep8
+
+from text_editor_w_undo_feature import Editor
 
 import unittest
 
 
-class Test(unittest.TestCase):
+class TestList(unittest.TestCase):
     """
-    Run the testing in class Editor 
+    Run the testing in class LinkedStack
+    """
+
+    def test_push(self):
+        """
+        Check the push(self, item)
+        """
+        stack = LinkedStack()
+        stack.push(9)
+        self.assertEqual(str(stack), "9\n")
+        stack.push(-100)
+        self.assertEqual(str(stack), "-100\n9\n")
+        self.assertEqual(stack.count, 2)
+
+    def test_pop(self):
+        """
+        Check the pop(self)
+        """
+        stack = LinkedStack()
+        stack.push(1)
+        stack.push(3)
+        stack.push(5)
+        stack.pop()
+        self.assertEqual(str(stack), "3\n1\n")
+        stack.pop()
+        self.assertEqual(str(stack), "1\n")
+        stack.pop()
+        self.assertEqual(str(stack), "")
+        self.assertRaises(AssertionError, stack.pop)
+        self.assertEqual(stack.count, 0)
+
+    def test_str(self):
+        """
+        Check the __str__(self)
+        """
+        stack = LinkedStack()
+        stack.push(1)
+        stack.push(3)
+        self.assertEqual(str(stack), "3\n1\n")
+        self.assertNotEqual(str(stack), "5\n3\n")
+
+
+    """
+    Run the testing in class Editor
     """
 
     def test_read(self):
@@ -112,15 +161,49 @@ class Test(unittest.TestCase):
         editor.delete_all()
         self.assertEqual(len(editor.thelist), 0)
 
+    def test_undo(self):
+        """
+        Check the undo function
+        """
+        editor = Editor()
+        editor.read("input.txt")
+        command = ["delete", 0]
+        editor.menu(command)
+        self.assertEqual(len(editor.thelist), 10)
+        command = ["undo"]
+        editor.menu(command)
+        self.assertEqual(len(editor.thelist), 11)
+
+
+        editor = Editor()
+        editor.read("input.txt")
+        command = ["delete"]
+        editor.menu(command)
+        self.assertEqual(len(editor.thelist), 0)
+        command = ["undo"]
+        editor.menu(command)
+        self.assertEqual(len(editor.thelist), 11)
+        self.assertEqual(editor.thelist[0], "I")
+
+        editor = Editor()
+        editor.read("input.txt")
+        editor.insert(0, "haha")
+        editor.stack.push(["insert", 0])
+        self.assertEqual(len(editor.thelist), 12)
+        command = ["undo"]
+        editor.menu(command)
+        self.assertEqual(len(editor.thelist), 11)
+        self.assertEqual(editor.thelist[0], "I")
+
     """
-    Run the testing in class List
+    Run the testing in class LinkedList
     """
 
     def test_append(self):
         """
         Check the append(self, item)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(9)
         self.assertEqual(list1, [9])
         list1.append(-100)
@@ -131,7 +214,7 @@ class Test(unittest.TestCase):
         """
         Check the __eq__(self, other)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(9)
         list1.append(10)
         self.assertTrue(list1 == [9, 10])
@@ -142,7 +225,7 @@ class Test(unittest.TestCase):
         """
         Check the __len__(self)
         """
-        list1 = List()
+        list1 = LinkedList()
         self.assertEqual(len(list1), 0)
         list1.append(9)
         self.assertEqual(len(list1), 1)
@@ -151,7 +234,7 @@ class Test(unittest.TestCase):
         """
         Check the __contains__(self, item)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(3)
         list1.append(5)
@@ -163,7 +246,7 @@ class Test(unittest.TestCase):
         """
         Check the __str__(self)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(3)
         self.assertEqual(str(list1), "1\n3")
@@ -173,7 +256,7 @@ class Test(unittest.TestCase):
         """
         Check the valid_index(self, index)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(2)
         self.assertTrue(list1.valid_index(0))
@@ -185,7 +268,7 @@ class Test(unittest.TestCase):
         """
         Check the __getitem__(self, index)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(2)
         self.assertRaises(IndexError, list1.__getitem__, 10)
@@ -196,7 +279,7 @@ class Test(unittest.TestCase):
         """
         Check the __setitem__(self, index, item)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(2)
         self.assertRaises(IndexError, list1.__setitem__, 5, 11)
@@ -209,16 +292,16 @@ class Test(unittest.TestCase):
         """
         Check the insert(self, index, item)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(3)
         list1.append(5)
-        self.assertRaises(IndexError, list1.insert, 4, 11)
+        self.assertRaises(IndexError, list1.insert, 5, 11)
         self.assertRaises(IndexError, list1.insert, -9, 11)
         list1.insert(0, 5)
         self.assertEqual(list1[0], 5)
-        list1.insert(4, 6)
-        self.assertEqual(list1[4], 6)
+        list1.insert(3, 6)
+        self.assertEqual(list1[3], 6)
         self.assertEqual(len(list1), 5)
         list1.insert(-5, 9)
         self.assertEqual(list1[0], 9)
@@ -228,7 +311,7 @@ class Test(unittest.TestCase):
         """
         Check the delete(self, index)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(3)
         list1.append(5)
@@ -247,7 +330,7 @@ class Test(unittest.TestCase):
         """
         Check the remove(self, item)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.append(1)
         list1.append(3)
         list1.append(1)
@@ -261,7 +344,7 @@ class Test(unittest.TestCase):
         """
         Check the sort(self, reverse)
         """
-        list1 = List()
+        list1 = LinkedList()
         list1.sort(True)
         self.assertEqual(list1, [])
         list1.append(9)
@@ -270,7 +353,7 @@ class Test(unittest.TestCase):
         list1.append(5)
         list1.sort(True)
         self.assertEqual(list1, [9, 5, 3, -10])
-        list2 = List()
+        list2 = LinkedList()
         list2.append(9)
         list2.append(3)
         list2.append(-10)
@@ -278,23 +361,18 @@ class Test(unittest.TestCase):
         list2.sort(False)
         self.assertEqual(list2, [-10, 3, 5, 9])
 
-    def test_modify_size(self):
+    def test_get_node(self):
         """
-        Check the modify_size(self)
+        Check the _get_node(self, index)
         """
-        list1 = List()
-        for i in range(75):
-            list1.append(1)
-        self.assertEqual(list1.size, 80)
-        self.assertEqual(len(list1), 75)
-        for i in range(66):
-            list1.remove(1)
-        self.assertEqual(list1.size, 40)
-        self.assertEqual(len(list1), 9)
-        for i in range(6):
-            list1.remove(1)
-        self.assertEqual(list1.size, 20)
-        self.assertEqual(len(list1), 3)
+        list1 = LinkedList()
+        list1.append(0)
+        list1.append(1)
+        list1.append(2)
+        node = list1._get_node(0)
+        self.assertEqual(node.item, 0)
+        self.assertRaises(IndexError, list1._get_node, 3)
+        self.assertRaises(IndexError, list1._get_node, -4)
 
 
 if __name__ == "__main__":

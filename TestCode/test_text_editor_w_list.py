@@ -1,10 +1,10 @@
 """
 author : Loi Chai Lam
 date : 8 Sep 2017
-title : Testing for Assignment2 Task 2
+title : Testing for Assignment2 Task 4
 
-This is a testing code to test the List Data structure under
-folder "Data Structure/the_list.py"
+This is a testing code to test the under
+folder "Tasks/TextEditorWithDataStructure/text_editor_w_list.py"
 
 """
 import sys  # nopep8
@@ -16,10 +16,106 @@ sys.path.insert(0, os.path.join(
 
 from the_list import List
 
+sys.path.insert(0, os.path.join(
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'Tasks/TextEditorWithDataStructure'))  # nopep8
+
+from text_editor_w_list import Editor
+
 import unittest
 
 
-class TestList(unittest.TestCase):
+class Test(unittest.TestCase):
+    """
+    Run the testing in class Editor 
+    """
+
+    def test_read(self):
+        """
+        Check the read(self, filename)
+        """
+        editor = Editor()
+        filename = "input.txt"
+        editor.read(filename)
+        self.assertEqual(editor.thelist[0], "I")
+        self.assertEqual(len(editor.thelist), 11)
+
+    def test_write(self):
+        """
+        Check the write(self, other)
+        """
+        editor = Editor()
+        filename1 = "input.txt"
+        filename2 = "aaa.txt"
+        editor.read(filename1)
+        editor.write(filename2)
+        editor1 = Editor()
+        editor1.read(filename2)
+        self.assertEqual(editor1.thelist[0], "I")
+        self.assertEqual(len(editor1.thelist), 11)
+
+    def test_search(self):
+        """
+        Check the search(self, word)
+        """
+        editor = Editor()
+        editor.insert(0, "a.")
+        editor.insert(0, "b!!!")
+        editor.insert(0, "c--")
+        output = editor.search("b")
+        self.assertEqual(1, output[0])
+        output = editor.search("A")
+        self.assertEqual(2, output[0])
+        self.assertEqual(editor.search("f"), False)
+
+    def test_print(self):
+        """
+        Check the print(self, num1, num2)
+        """
+        editor = Editor()
+        editor.insert(0, "a")
+        editor.insert(0, "b")
+        editor.insert(0, "c")
+        self.assertEqual(str(editor.thelist), "c\nb\na")
+        editor.delete_index(0)
+        self.assertEqual(str(editor.thelist), "b\na")
+
+    def test_insert(self):
+        """
+        Check the insert(self, num, text)
+        """
+        editor = Editor()
+        editor.insert(0, "a")
+        editor.insert(0, "b")
+        editor.insert(0, "c")
+        self.assertRaises(Exception, editor.insert, 6, "d")
+        self.assertEqual(editor.thelist[0], "c")
+        self.assertEqual(editor.thelist[1], "b")
+
+    def test_delete_index(self):
+        """
+        Check the delete_index(self, num)
+        """
+        editor = Editor()
+        editor.insert(0, "a")
+        editor.insert(0, "b")
+        editor.insert(0, "c")
+        editor.delete_index(0)
+        self.assertEqual(str(editor.thelist), "b\na")
+        self.assertRaises(Exception, editor.delete_index, "d")
+        self.assertEqual(len(editor.thelist), 2)
+
+    def test_delete_all(self):
+        """
+        Check the delete_all(self)
+        """
+        editor = Editor()
+        editor.insert(0, "a")
+        editor.insert(0, "b")
+        editor.insert(0, "c")
+        self.assertEqual(len(editor.thelist), 3)
+        editor.delete_all()
+        self.assertEqual(len(editor.thelist), 0)
+
     """
     Run the testing in class List
     """
@@ -203,9 +299,6 @@ class TestList(unittest.TestCase):
             list1.remove(1)
         self.assertEqual(list1.size, 20)
         self.assertEqual(len(list1), 3)
-
-
-
 
 
 if __name__ == "__main__":
